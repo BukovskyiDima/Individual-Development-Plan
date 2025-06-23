@@ -15,14 +15,20 @@ import {
   Flex,
 } from "@mantine/core";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
-import competencyMatrix from "@/config/competency_matrix.json";
-import { getPositionOptions, Level, levelPeriods } from "@/config/positions";
+import {
+  getPositionOptions,
+  Level,
+  levelPeriods,
+  competencyMatrix,
+} from "@/config";
 import { employeeSchema } from "@/validation/employeeSchema";
 import type { ZodError, ZodIssue } from "zod";
 
 export default function App() {
   const { t } = useTranslation();
-  const [formData, setFormData] = useState<{ [key: string]: string }>({
+
+  // Initial form state
+  const initialFormState = {
     name: "",
     position: "",
     currentLevel: "",
@@ -34,8 +40,11 @@ export default function App() {
     goalsTech: "",
     goalsSoft: "",
     minPeriod: "",
-  });
+  };
 
+  const [formData, setFormData] = useState<{ [key: string]: string }>(
+    initialFormState
+  );
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   // Map TechLevel to Level enum
@@ -209,6 +218,11 @@ export default function App() {
     );
   };
 
+  const resetForm = () => {
+    setFormData(initialFormState);
+    setErrors({});
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -219,6 +233,7 @@ export default function App() {
 
     await generateDoc();
     alert(t("formSubmitted"));
+    resetForm(); // Reset form after successful submission
   };
 
   return (
