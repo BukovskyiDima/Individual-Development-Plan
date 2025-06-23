@@ -1,7 +1,15 @@
 {
   "name": "ipr",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "description": "Individual Development Plan (IDP) generator",
+  "homepage": "https://bukovskyidima.github.io/Individual-Development-Plan/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bukovskyidima/Individual-Development-Plan.git"
+  },
+  "author": "bukovskyidima",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",
