@@ -1,0 +1,31 @@
+{
+  "title": "Индивидуальный план развития (ИПР)",
+  "employeeName": "ФИО сотрудника",
+  "employeeNamePlaceholder": "Добавь имя сотрудника",
+  "position": "Должность",
+  "currentLevel": "Текущий грейд",
+  "targetLevel": "Целевой грейд",
+  "periodFrom": "Период с",
+  "periodTo": "Период до",
+  "manager": "Руководитель",
+  "managerPlaceholder": "Добавь имя менеджера",
+  "goalsGeneral": "Общие цели",
+  "goalsTech": "Цели по техническим навыкам",
+  "goalsSoft": "Цели по soft-skills",
+  "saveAndExport": "Сохранить и экспортировать",
+  "formSubmitted": "Форма отправлена и документ сохранён!",
+  "documentTitle": "Индивидуальный план развития (ИПР)",
+  "selectPosition": "Выберите должность",
+  "selectCurrentLevel": "Выберите текущий уровень",
+  "selectCurrentLevelFirst": "Сначала выберите текущий уровень",
+  "selectPeriod": "Выберите период",
+  "goalsGeneralPlaceholder": "Добавьте общие цели...",
+  "goalsTechPlaceholder": "Добавьте технические цели...",
+  "goalsSoftPlaceholder": "Добавьте цели по soft-skills...",
+  "period": "Период",
+  "minPeriod": "Минимальный коммерческий период",
+  "positions": {
+    "technicianProgrammer": "Техник-программист",
+    "engineerProgrammer": "Инженер-программист"
+  }
+}

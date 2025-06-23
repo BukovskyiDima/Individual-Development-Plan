@@ -1,0 +1,31 @@
+{
+  "title": "Individual Development Plan (IDP)",
+  "employeeName": "Employee Full Name",
+  "employeeNamePlaceholder": "Add employee name",
+  "position": "Position",
+  "currentLevel": "Current Grade",
+  "targetLevel": "Target Grade",
+  "periodFrom": "Period From",
+  "periodTo": "Period To",
+  "manager": "Manager",
+  "managerPlaceholder": "Add manager name",
+  "goalsGeneral": "General Goals",
+  "goalsTech": "Technical Skills Goals",
+  "goalsSoft": "Soft Skills Goals",
+  "saveAndExport": "Save and Export",
+  "formSubmitted": "Form submitted and document saved!",
+  "documentTitle": "Individual Development Plan (IDP)",
+  "selectPosition": "Select position",
+  "selectCurrentLevel": "Select current level",
+  "selectCurrentLevelFirst": "Select current level first",
+  "selectPeriod": "Select period",
+  "goalsGeneralPlaceholder": "Add general goals...",
+  "goalsTechPlaceholder": "Add technical goals...",
+  "goalsSoftPlaceholder": "Add soft skills goals...",
+  "period": "Period",
+  "minPeriod": "Minimum commercial period",
+  "positions": {
+    "technicianProgrammer": "Technician Programmer",
+    "engineerProgrammer": "Engineer Programmer"
+  }
+}

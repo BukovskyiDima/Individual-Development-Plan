@@ -1,0 +1,150 @@
+{
+  "CompetencyMatrix": [
+    {
+      "TechLevel": "Intern"
+    },
+    {
+      "TechLevel": "Junior -",
+      "English Level": "Pre-Intermediate (B1 - B1+)",
+      "Primary Skill/Area of Expertise (Development)": "Main language: Base knowledge\nFramework: Main base knowledge\nUI Library: One UI lib Base knowledge\nVersion control (Git): Base knowledge\nTesting: Optional\nAPI integration: Base knowledge (REST)\nBuild tools: Optional\nArchitecture: Optional\nDocumentation: Optional\nSecurity basics: Optional\nAI: Prompt-engenering base knowledge\n\nDefinition:\n - Should attach links to git/codewars/leetcode for review to avoid live coding while interview\n - Works on tasks under supervision\n - Learns technology stack",
+      "Customer Focus": "Learns more about customer's business processes, domain",
+      "Teamwork / Collaboration": "Follows instructions. Works mainly under supervision.",
+      "Learning capability": "Constantly works on improving level of skills and qualifications within main tech stack",
+      "Self-Management": "Submits reports, follows company policies and instructions",
+      "Quality": "Learns coding standards and guidelines. Fixes minor bugs.",
+      "Project Management": "Clearly communicates issues on assigned task. Is familiar with methodology (development).",
+      "Analytical thinking / Problem Solving": "Is able to recognize and clearly identify a problem. Timely informs about the problem and proposed solutions.",
+      "Stress Tolerance": "Ability to manage time effectively and meet task deadlines."
+    },
+    {
+      "TechLevel": "Junior",
+      "English Level": "Intermediate (B1 - B1+)",
+      "Primary Skill/Area of Expertise (Development)": "State management: Base knowledge\nAPI integration: Deep knowledge (REST)",
+      "Customer Focus": "",
+      "Teamwork / Collaboration": "",
+      "Learning capability": "",
+      "Self-Management": "",
+      "Quality": "Follows coding standards and guidelines",
+      "Project Management": "Follows methodology (development) on the project",
+      "Analytical thinking / Problem Solving": "Makes use of all possible sources to find information on resolving the issue. Involves colleagues for finding solutions.",
+      "Stress Tolerance": ""
+    },
+    {
+      "TechLevel": "Junior +",
+      "English Level": "Intermediate (B1 - B1+)",
+      "Primary Skill/Area of Expertise (Development)": "Main language: Deep knowledge\nFramework: Main deep knowledge, second base knowledge\nUI Library: First UI lib Deep knowledge, second UI lib Base knowledge\nVersion control (Git): Deep knowledge\nTesting: Base knowledge\nAPI integration: Deep knowledge (REST), base knowledge (graphql)\nBuild tools: Base knowledge\nDocumentation: Base knowledge\nSecurity basics: Base knowledge\nAI: Prompt-engenering deep knowledge\n\nDefinition: \n - Works on change requests \n - Works on regular components/features",
+      "Customer Focus": "Clearly communicates with customer about his /her tasks, status, etc. Holds demos presenting his/her tasks",
+      "Teamwork / Collaboration": "Attends necessary meetings. Is capable to assign tasks and to supervise the work of 1-3 or more employees. Can train sub-ordinates within assigned tasks.",
+      "Learning capability": "Constantly works on improving level of skills and qualifications in similar technologies",
+      "Self-Management": "Is able to identify opportunities for personal development. Proposes the directions for personal development. Accepts the help from colleagues to gain new knowledge and skills.",
+      "Quality": "",
+      "Project Management": "",
+      "Analytical thinking / Problem Solving": "Is able to recognize and clearly identify a problem. Identifies potential causes of the problem. Independently chooses and implements solutions of simple issues.",
+      "Stress Tolerance": ""
+    },
+    {
+      "TechLevel": "Middle -",
+      "English Level": "Intermediate (B1+ - B2)",
+      "Primary Skill/Area of Expertise (Development)": "Main language: Advanced knowledge\nUI Library: Ability to quick undestanding other UI libs on base level knowledge\nAPI integration: Deep knowledge (REST + GraphQL) + base knowledge (Socket)\nState management: Deep knowledge\nArchitecture: Base knowledge\n\nDefinition:\n - Follows the design defined by Senior\n - Follows implicit or explicit designs provided by Seniors",
+      "Customer Focus": "",
+      "Teamwork / Collaboration": "Follows rules (implicit and explicit), is supervised from time to time. Participates in team planning and other meetings.",
+      "Learning capability": "",
+      "Self-Management": "Manages subordinates. Plans self-education. Takes part in defining personal goals. Independently monitors the progress.",
+      "Quality": "Clarifies requirements for assigned features. Fixes issues, found during code review.",
+      "Project Management": "Estimates assigned tasks, features. Identifies and clearly communicates dependencies or issues during implementation.",
+      "Analytical thinking / Problem Solving": "Generates several possible solutions. Chooses the best possible solution.",
+      "Stress Tolerance": "Ability to manage time effectively and meet stories deadlines."
+    },
+    {
+      "TechLevel": "Middle",
+      "English Level": "Intermediate (B1+ - B2)",
+      "Primary Skill/Area of Expertise (Development)": "Framework: Main advanced knowledge, second deep knowledge\nState management: Base knowledge (second approach)\nVersion control (Git): Deep knowledge + branching strategy\nTesting: Deep knowledge\nAPI integration: Deep knowledge (REST + GraphQL + Socket)\nBuild tools: Deep knowledge\nArchitecture: Deep knowledge + architecture decisions (optional)\n\nDefinition:\n - Creates technical documentation on own specialty features\n - Maintains project infrastructure",
+      "Customer Focus": "Clarifies, analyzes and discusses requirements, organizes working process, etc. Knows customer's business processes, domain. Takes part in all technical discussions. Holds demos presenting own area of work and that of a sub-team. Analyses, gathers and clarifies requirements of their area. Escalates issues within own area",
+      "Teamwork / Collaboration": "Helps with onboarding Juniors.",
+      "Learning capability": "",
+      "Self-Management": "",
+      "Quality": "Performs code review. Analyses requirements for own area.",
+      "Project Management": "",
+      "Analytical thinking / Problem Solving": "Monitors the implementation of the solution and the need for adjustment/selection of alternatives. Evaluates various solutions according to specified criteria. Plans and implements the solution (independently or with the help of employees). Is capable to decompose a problem. Used the company's past experience in solving such issues.",
+      "Stress Tolerance": ""
+    },
+    {
+      "TechLevel": "Middle +",
+      "English Level": "Intermediate (B1+ - B2)",
+      "Primary Skill/Area of Expertise (Development)": "Main language: Expert knowledge\nFramework: Main expert knowledge, second deep knowledge\nUI Library: Ability to quick undestanding other UI libs on deep level knowledge\nAI: Prompt-engenering expert knowledge\n\nDefinition:\n - Works on complex components/features. Defines design in own area, subsystem. Assists architects of a higher level. Follows chosen architecture. Deploys development releases. Has good understanding of entire stack.",
+      "Customer Focus": "",
+      "Teamwork / Collaboration": "Creates rules in own area, instructions, has own area within project. Might have several subordinates (subteam). Communicates with and coordinates subordinates. Coordinates, provides onboarding. Is capable to assign tasks and to supervise the work of 5-12 or more employees. Can train sub-ordinates within assigned tasks.",
+      "Learning capability": "Constantly works on improving level of skills and qualifications in related technologies (node.js, ci/cd etc.)",
+      "Self-Management": "Manages intersections with project plans - vacations of team members, overtime, etc.",
+      "Quality": "Monitors the quality of technical solutions in own area.",
+      "Project Management": "Estimates effort on tasks through submodule/subsystem level. Is able to provide estimate for subordinates.",
+      "Analytical thinking / Problem Solving": "Independently defines problems and reports to PM. Organises problem analysis involving the team. Turns to external assistance in a timely manner. Provides a solution to a problem.",
+      "Stress Tolerance": ""
+    },
+    {
+      "TechLevel": "Senior -",
+      "English Level": "Upper-Intermediate (B2 - B2+)",
+      "Primary Skill/Area of Expertise (Development)": "Framework: Ability to use any framework at a deep level for a month\nState management: Deep knowledge + architecture decisions\nVersion control (Git): Expert knowledge + CI/CD integration\nTesting: Expert knowledge + test strategy\nAPI integration: Advanced knowledge + design\nBuild tools: Expert knowledge + performance optimization\nArchitecture: Advanced understanding + contribution\nDocumentation: Advanced + code standards\nSecurity basics: Advanced knowledge\n\nDefinition:\n - Deploys development releases",
+      "Customer Focus": "",
+      "Teamwork / Collaboration": "Anticipates technical issues on the project and timely eliminates those. Reports them to the PM and/or the customer. Organizes analysis and problem solving. Keeps track of progress. Informs stakeholders about progress.",
+      "Learning capability": "",
+      "Self-Management": "",
+      "Quality": "Analyses requirements and restrictions of entire application /project. Chooses tools and approaches to testing (testing strategy).",
+      "Project Management": "Manages (identifies, communicates, coordinates, solves, escalates) dependencies on submodule/subsystem level, on level of subordinates/team /interteam. Assists implementing methodology on the project.",
+      "Analytical thinking / Problem Solving": "Makes decisions in difficult situations with a high level of uncertainty. Evaluates the implemented solution and analyzes the result. Effectively communicates the results of the analysis and the decision made to stakeholders (including the customer).",
+      "Stress Tolerance": "Ability to manage time effectively and meet project deadlines."
+    },
+    {
+      "TechLevel": "Senior",
+      "English Level": "Upper-Intermediate (B2 - B2+)",
+      "Primary Skill/Area of Expertise (Development)": "",
+      "Customer Focus": "",
+      "Teamwork / Collaboration": "Shares important experience and knowledge. Supervises and mentors less qualified team members. Performs the role of Team Lead (as substitution). Hosts technical meetings. Has been managing the work of the project team of 5-12 employees for at least 2 years. Is able to coordinate the activities of several teams. Effectively manages the work of personal project team.",
+      "Learning capability": "",
+      "Self-Management": "",
+      "Quality": "",
+      "Project Management": "",
+      "Analytical thinking / Problem Solving": "Effectively harnesses the potential of teams and teamwork to analyze problems and find solutions. Involves external resources to analyze/solve the issue whenever necessary. Anticipates technical issues on the project and timely eliminates those. Reports them to the PM and/or the customer. Organizes analysis and problem solving. Keeps track of progress. Informs stakeholders about progress.",
+      "Stress Tolerance": ""
+    },
+    {
+      "TechLevel": "Technical Leader",
+      "English Level": "Upper-Intermediate (B2 - B2+)",
+      "Primary Skill/Area of Expertise (Development)": "Creates architecture of entire application. Works on PoC /Prototypes. Defines design of API. Choses the technology stack. Creates structure and infrastructure of application. Creates technical documentation on architecture, infrastructure. Choses build strategy, deployment and automation. Has good understanding of entire stack. Has good understanding of adjacent stacks.",
+      "Customer Focus": "Bootstraps new account/project. Consults customer about technical issues.",
+      "Teamwork / Collaboration": "Shares important experience and knowledge. Supervises and mentors less qualified team members. Hosts technical meetings.",
+      "Learning capability": "",
+      "Self-Management": "",
+      "Quality": "Troubleshoots. Creates guidelines, coding standards. Encourages team to adhere to development culture, guidelines.",
+      "Project Management": "Identifies, resolves and escalates technical risks. Consults about methodology (development) technical implementation.",
+      "Analytical thinking / Problem Solving": "",
+      "Stress Tolerance": "Ability to manage time effectively and meet projects deadlines."
+    },
+    {
+      "TechLevel": "Team Leader",
+      "English Level": "Upper-Intermediate (B2 - B2+)",
+      "Primary Skill/Area of Expertise (Development)": "-",
+      "Customer Focus": "Organizes team's communication and work with customer. Organizes team's work with requirements. Holds demos presenting entire project. Takes part in discussing budget issues. Controls the level of team's understanding and mastery of customer's business processes, domain. Helps customer to staff the team.",
+      "Teamwork / Collaboration": "Designates roles in the team, resolves conflicts. Creates rules, instructions within project. Makes decisions within team and project area. Delegates responsibilities to team members. Develops, implements and optimizes team path, strategy. Communicates with and coordinates entire team. Hosts team planning and other meetings. Reviews performance of team members, prepares feedbacks on their work, requests feedback from customer, initiates promotion of team members. Controls team climate. Serves as main escalation point for the team.",
+      "Learning capability": "",
+      "Self-Management": "",
+      "Quality": "Manages quality of project",
+      "Project Management": "Is responsible for the delivery. Conducts planning, task assignment, manages delivery results. Manages and does all varieties of technical estimations on all project levels. Implements methodology (development) on the project, helps to choose proper methodology for customer/PM/Team.",
+      "Analytical thinking / Problem Solving": "",
+      "Stress Tolerance": ""
+    },
+    {
+      "TechLevel": "Architect",
+      "English Level": "Upper-Intermediate (B2 - B2+)",
+      "Primary Skill/Area of Expertise (Development)": "Specifies and designs application solution for complex/distributed/cloud application components and their interaction at a high level. Creates, presents and explains high-level product specifications and design documents. Takes responsibility for possible functional limitations. Evaluates project constraints to find alternatives, alleviate risks and performs process re-engineering. Explores a range of technology and design possibilities and alternatives to improve system implementation. Is responsible for the best current practices and suggestions. Continuously researches emerging technologies. Evaluates and standardizes technical documentation process (High-level, API, Main use cases diagrams).",
+      "Customer Focus": "Collaborates with Product Owners, Business Users to elicit software functional and non-functional requirements and gather feedback. Analyzes business domain. Negotiates distributed system specification and limitations. Presents Technical Solutions for Business owners. Participates in presale activities (project initiation). Audits existing solution.",
+      "Teamwork / Collaboration": "Guides, assists and provides the development team with architectural blueprints to follow. Facilitates cross-teams technical collaboration. Shares important experience and knowledge. Negotiates possible functional limitations mediating between team and product/business owner. Shares expertise on technical aspects of system development and integration and ensures that relevant technical strategies, policies, standards and practices are applied correctly.",
+      "Learning capability": "",
+      "Self-Management": "",
+      "Quality": "Identifies and mitigates possible design risks. Analyzes functional and non-functional requirements and restrictions of entire application. Applies functional, non-functional requirements to build design. Reviews, analyzes, optimizes application architecture and design. Monitors solution to match the needs and satisfy the restrictions of user, business, infrastructure.",
+      "Project Management": "Estimates and monitors technical solution cost. Determines team's composition and suggests skill set. Negotiates delivery process and optimization (environments, quality assurance, release management, CI/CD framework). Negotiates development process/methodology.",
+      "Analytical thinking / Problem Solving": "",
+      "Stress Tolerance": ""
+    }
+  ]
+}
