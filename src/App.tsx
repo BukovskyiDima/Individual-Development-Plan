@@ -4,7 +4,6 @@ import { saveAs } from "file-saver";
 import { Document, Packer, Paragraph, TextRun } from "docx";
 import {
   TextInput,
-  Textarea,
   Button,
   Group,
   Title,
@@ -16,13 +15,16 @@ import {
 } from "@mantine/core";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import {
-  getPositionOptions,
+  // getPositionOptions,
   Level,
   levelPeriods,
   competencyMatrix,
 } from "@/config";
 import { employeeSchema } from "@/validation/employeeSchema";
 import type { ZodError, ZodIssue } from "zod";
+import TechGoals from "@/components/TechGoals";
+import GoalsSoft from "@/components/SoftGoals/GoalsSoft";
+import GeneralGoals from "@/components/GeneralGoals";
 
 export default function App() {
   const { t } = useTranslation();
@@ -33,12 +35,15 @@ export default function App() {
     position: "",
     currentLevel: "",
     targetLevel: "",
-    periodFrom: "",
-    periodTo: "",
+    // periodFrom: "",
+    // periodTo: "",
     manager: "",
     goalsGeneral: "",
+    goalsGeneralByLevel: "",
     goalsTech: "",
+    goalsTechByLevel: "",
     goalsSoft: "",
+    goalsSoftByLevel: "",
     minPeriod: "",
   };
 
@@ -161,9 +166,9 @@ export default function App() {
         const nextLevel = getNextLevel(newValue);
         const competencyData = getCompetencyData(nextLevel);
         if (competencyData) {
-          updated.goalsGeneral = competencyData.englishLevel || "";
-          updated.goalsTech = competencyData.primarySkills || "";
-          updated.goalsSoft = competencyData.softSkills || "";
+          updated.goalsGeneralByLevel = competencyData.englishLevel || "";
+          updated.goalsTechByLevel = competencyData.primarySkills || "";
+          updated.goalsSoftByLevel = competencyData.softSkills || "";
         }
 
         // Set minimum period based on current level
@@ -223,6 +228,15 @@ export default function App() {
     setErrors({});
   };
 
+  const isFormValid = () => {
+    return (
+      formData.name &&
+      formData.manager &&
+      formData.position &&
+      formData.currentLevel
+    );
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -263,7 +277,7 @@ export default function App() {
             required
           />
 
-          <Select
+          {/* <Select
             label={t("position")}
             placeholder={t("selectPosition")}
             data={getPositionOptions(t)}
@@ -271,7 +285,7 @@ export default function App() {
             onChange={(value) => handleSelectChange("position", value)}
             error={errors.position}
             required
-          />
+          /> */}
 
           <Group grow>
             <Select
@@ -280,6 +294,7 @@ export default function App() {
               data={techLevelOptions}
               value={formData.currentLevel}
               onChange={(value) => handleSelectChange("currentLevel", value)}
+              required
             />
 
             <Select
@@ -295,46 +310,43 @@ export default function App() {
             />
           </Group>
 
-          <Flex gap="xs" align="center">
-            <Text size="sm" fw={500}>
-              {t("minPeriod")}:
-            </Text>
-            <Text>{formData.minPeriod}</Text>
-          </Flex>
+          {formData.minPeriod && (
+            <Flex gap="xs" align="center">
+              <Text size="md" fw={500}>
+                {t("minPeriod")}:
+              </Text>
+              <Text>{formData.minPeriod}</Text>
+            </Flex>
+          )}
 
-          <Textarea
-            label={t("goalsGeneral")}
-            name="goalsGeneral"
-            value={formData.goalsGeneral}
-            onChange={handleChange}
-            placeholder={t("goalsGeneralPlaceholder")}
-            minRows={4}
-            autosize
-            maxRows={8}
-          />
+          {formData.goalsGeneralByLevel && (
+            <GeneralGoals
+              defaultValue={formData.goalsGeneralByLevel}
+              value={formData.goalsGeneral}
+              onChange={handleChange}
+            />
+          )}
 
-          <Textarea
-            label={t("goalsTech")}
-            name="goalsTech"
-            value={formData.goalsTech}
-            onChange={handleChange}
-            placeholder={t("goalsTechPlaceholder")}
-            minRows={4}
-            autosize
-          />
+          {formData.goalsSoftByLevel && (
+            <GoalsSoft
+              defaultValue={formData.goalsSoftByLevel}
+              value={formData.goalsSoft}
+              onChange={handleChange}
+            />
+          )}
 
-          <Textarea
-            label={t("goalsSoft")}
-            name="goalsSoft"
-            value={formData.goalsSoft}
-            onChange={handleChange}
-            placeholder={t("goalsSoftPlaceholder")}
-            minRows={4}
-            autosize
-          />
+          {formData.goalsTechByLevel && (
+            <TechGoals
+              defaultValue={formData.goalsTechByLevel}
+              value={formData.goalsTech}
+              onChange={handleChange}
+            />
+          )}
 
           <Group justify="flex-end">
-            <Button type="submit">{t("saveAndExport")}</Button>
+            <Button type="submit" disabled={!isFormValid()}>
+              {t("saveAndExport")}
+            </Button>
           </Group>
         </Stack>
       </form>
