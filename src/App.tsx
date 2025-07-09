@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { saveAs } from "file-saver";
-import { Document, Packer, Paragraph, TextRun } from "docx";
 import {
   TextInput,
   Button,
@@ -13,30 +11,23 @@ import {
   Text,
   Flex,
 } from "@mantine/core";
-import LanguageSwitcher from "@/components/LanguageSwitcher";
-import {
-  // getPositionOptions,
-  Level,
-  levelPeriods,
-  competencyMatrix,
-} from "@/config";
+import { Level, levelPeriods, competencyMatrix } from "@/config";
 import { employeeSchema } from "@/validation/employeeSchema";
 import type { ZodError, ZodIssue } from "zod";
 import TechGoals from "@/components/TechGoals";
 import GoalsSoft from "@/components/SoftGoals/GoalsSoft";
 import GeneralGoals from "@/components/GeneralGoals";
+import { generateDocPreview } from "@/utils/docGenerator";
+import { DocumentPreviewModal } from "@/components/DocumentPreviewModal";
 
 export default function App() {
   const { t } = useTranslation();
 
   // Initial form state
-  const initialFormState = {
+  const initialFormState: { [key: string]: string | null } = {
     name: "",
-    position: "",
-    currentLevel: "",
-    targetLevel: "",
-    // periodFrom: "",
-    // periodTo: "",
+    currentLevel: null,
+    targetLevel: null,
     manager: "",
     goalsGeneral: "",
     goalsGeneralByLevel: "",
@@ -47,10 +38,13 @@ export default function App() {
     minPeriod: "",
   };
 
-  const [formData, setFormData] = useState<{ [key: string]: string }>(
+  const [formData, setFormData] = useState<{ [key: string]: string | null }>(
     initialFormState
   );
+
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [previewOpened, setPreviewOpened] = useState(false);
+  const [previewBlob, setPreviewBlob] = useState<Blob | null>(null);
 
   // Map TechLevel to Level enum
   const techLevelToEnum: Record<string, Level> = {
@@ -105,20 +99,20 @@ export default function App() {
   };
 
   // Get next level based on current level
-  const getNextLevel = (currentLevel: string): string => {
+  const getNextLevel = (currentLevel: string | null): string | null => {
+    if (!currentLevel) return null;
     const currentIndex = techLevels.indexOf(currentLevel);
     if (currentIndex === -1 || currentIndex === techLevels.length - 1) {
-      return "";
+      return null;
     }
     return techLevels[currentIndex + 1];
   };
 
-  const validateEmployeeFields = (data: { [key: string]: string }) => {
+  const validateEmployeeFields = (data: { [key: string]: string | null }) => {
     try {
       employeeSchema.parse({
-        name: data.name,
-        manager: data.manager,
-        position: data.position,
+        name: data.name || "",
+        manager: data.manager || "",
       });
       setErrors({});
       return true;
@@ -152,27 +146,28 @@ export default function App() {
   };
 
   const handleSelectChange = (name: string, value: string | null) => {
-    const newValue = value || "";
     setFormData((prev) => {
       const updated = {
         ...prev,
-        [name]: newValue,
+        [name]: value,
         targetLevel:
-          name === "currentLevel" ? getNextLevel(newValue) : prev.targetLevel,
+          name === "currentLevel" ? getNextLevel(value) : prev.targetLevel,
       };
 
       // Auto-fill competency data when current level is selected
-      if (name === "currentLevel" && newValue) {
-        const nextLevel = getNextLevel(newValue);
-        const competencyData = getCompetencyData(nextLevel);
-        if (competencyData) {
-          updated.goalsGeneralByLevel = competencyData.englishLevel || "";
-          updated.goalsTechByLevel = competencyData.primarySkills || "";
-          updated.goalsSoftByLevel = competencyData.softSkills || "";
+      if (name === "currentLevel" && value) {
+        const nextLevel = getNextLevel(value);
+        if (nextLevel) {
+          const competencyData = getCompetencyData(nextLevel);
+          if (competencyData) {
+            updated.goalsGeneralByLevel = competencyData.englishLevel || "";
+            updated.goalsTechByLevel = competencyData.primarySkills || "";
+            updated.goalsSoftByLevel = competencyData.softSkills || "";
+          }
         }
 
         // Set minimum period based on current level
-        const levelEnum = techLevelToEnum[newValue];
+        const levelEnum = techLevelToEnum[value];
         if (levelEnum && levelPeriods[levelEnum]) {
           updated.minPeriod = `${levelPeriods[levelEnum]} months`;
         } else {
@@ -189,78 +184,58 @@ export default function App() {
     }
   };
 
-  const generateDoc = async () => {
-    const doc = new Document({
-      sections: [
-        {
-          children: [
-            new Paragraph({
-              children: [
-                new TextRun({
-                  text: t("documentTitle"),
-                  bold: true,
-                  size: 28,
-                }),
-              ],
-            }),
-            ...Object.entries(formData).map(
-              ([key, value]) =>
-                new Paragraph({
-                  children: [
-                    new TextRun({ text: `${key}: ${value}`, size: 24 }),
-                  ],
-                })
-            ),
-          ],
-        },
-      ],
-    });
-
-    const blob = await Packer.toBlob(doc);
-    saveAs(
-      blob,
-      `IPR_${formData.name || "employee"}_${formData.targetLevel}.docx`
-    );
-  };
-
   const resetForm = () => {
     setFormData(initialFormState);
     setErrors({});
   };
 
   const isFormValid = () => {
-    return (
-      formData.name &&
-      formData.manager &&
-      formData.position &&
-      formData.currentLevel
-    );
+    return formData.name && formData.manager && formData.currentLevel;
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handlePreview = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Validate employee fields before submission
     if (!validateEmployeeFields(formData)) {
       return;
     }
 
-    await generateDoc();
-    alert(t("formSubmitted"));
-    resetForm(); // Reset form after successful submission
+    try {
+      const blob = await generateDocPreview({ formData, t });
+      setPreviewBlob(blob);
+      setPreviewOpened(true);
+    } catch (error) {
+      console.error("Error generating preview:", error);
+    }
+  };
+
+  const handleClosePreview = () => {
+    setPreviewOpened(false);
+    setPreviewBlob(null);
+  };
+
+  const handleExport = () => {
+    setPreviewOpened(false);
+    setPreviewBlob(null);
+    resetForm(); // Сбрасываем форму после экспорта
+  };
+
+  const getFileName = () => {
+    return `IPR_${formData.name || "employee"}_${
+      formData.targetLevel || "unknown"
+    }.docx`;
   };
 
   return (
     <Container py="md">
-      <LanguageSwitcher />
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handlePreview}>
         <Stack gap="md">
           <Title order={2}>{t("title")}</Title>
 
           <TextInput
             label={t("employeeName")}
             name="name"
-            value={formData.name}
+            value={formData.name || ""}
             onChange={handleChange}
             error={errors.name}
             placeholder={t("employeeNamePlaceholder")}
@@ -270,22 +245,12 @@ export default function App() {
           <TextInput
             label={t("manager")}
             name="manager"
-            value={formData.manager}
+            value={formData.manager || ""}
             onChange={handleChange}
             error={errors.manager}
             placeholder={t("managerPlaceholder")}
             required
           />
-
-          {/* <Select
-            label={t("position")}
-            placeholder={t("selectPosition")}
-            data={getPositionOptions(t)}
-            value={formData.position}
-            onChange={(value) => handleSelectChange("position", value)}
-            error={errors.position}
-            required
-          /> */}
 
           <Group grow>
             <Select
@@ -304,7 +269,8 @@ export default function App() {
               disabled={true}
               placeholder={
                 formData.currentLevel
-                  ? getNextLevel(formData.currentLevel)
+                  ? getNextLevel(formData.currentLevel) ||
+                    t("selectCurrentLevelFirst")
                   : t("selectCurrentLevelFirst")
               }
             />
@@ -322,7 +288,7 @@ export default function App() {
           {formData.goalsGeneralByLevel && (
             <GeneralGoals
               defaultValue={formData.goalsGeneralByLevel}
-              value={formData.goalsGeneral}
+              value={formData.goalsGeneral || ""}
               onChange={handleChange}
             />
           )}
@@ -330,7 +296,7 @@ export default function App() {
           {formData.goalsSoftByLevel && (
             <GoalsSoft
               defaultValue={formData.goalsSoftByLevel}
-              value={formData.goalsSoft}
+              value={formData.goalsSoft || ""}
               onChange={handleChange}
             />
           )}
@@ -338,18 +304,27 @@ export default function App() {
           {formData.goalsTechByLevel && (
             <TechGoals
               defaultValue={formData.goalsTechByLevel}
-              value={formData.goalsTech}
+              value={formData.goalsTech || ""}
               onChange={handleChange}
             />
           )}
 
           <Group justify="flex-end">
             <Button type="submit" disabled={!isFormValid()}>
-              {t("saveAndExport")}
+              {t("preview")}
             </Button>
           </Group>
         </Stack>
       </form>
+
+      <DocumentPreviewModal
+        opened={previewOpened}
+        onClose={handleClosePreview}
+        onExport={handleExport}
+        previewBlob={previewBlob}
+        fileName={getFileName()}
+        t={t}
+      />
     </Container>
   );
 }

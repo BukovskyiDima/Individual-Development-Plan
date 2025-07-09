@@ -18,8 +18,6 @@ export const employeeSchema = z.object({
       /^[а-яёА-ЯЁa-zA-Z\s-]+$/,
       "Имя руководителя должно содержать только русские и английские буквы, пробелы и дефисы"
     ),
-
-  position: z.string().min(1, "Должность обязательна для заполнения"),
 });
 
 export type EmployeeFormData = z.infer<typeof employeeSchema>;
